@@ -1,1 +1,1 @@
-almost finished vid 2, go to 49 mins to coppy script
+finished vid 2 (need to fix compilor errors in movement script)
