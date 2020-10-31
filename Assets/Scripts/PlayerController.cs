@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   public MOVETYPE [IDLE=0, WALK=1, BOXPUSH=2, CHEER=3];
+   public enum MOVETYPE {IDLE=0, WALK=1, BOXPUSH=2, CHEER=3};
 
    public MOVETYPE PlayerState
    {
-       get{return State;
+       get{return State};
    }
    set
    {   
@@ -24,7 +24,7 @@ public float MoveTime = 1.0f;
 public float MoveDistance = 2.0f;
 
 //chached transform
-private Transform ThisTransform = null
+private Transform ThisTransform = null;
 
 //cplayer state
 private MOVETYPE State = MOVETYPE.IDLE;
