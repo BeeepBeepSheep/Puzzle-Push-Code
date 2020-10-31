@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+   // enum for player
    public enum MOVETYPE {IDLE=0, WALK=1, BOXPUSH=2, CHEER=3};
-
+   
+   //property of state
    public MOVETYPE PlayerState
    {
-       get{return State};
-   }
-   set
-   {   
+       get{return State;}
+   
+   set 
+   {
        State = value;
 
-       AnimComp.SetInteger("iSatet",(int)State);
+       AnimComp.SetInteger(iState,(int)State);
    }
 }
 // time in seconds to move 
@@ -96,5 +98,4 @@ public IEnumerator Move(float Increment = 0)
     ThisTransform.position = DestPos;
 
     yield break;
-
 }
