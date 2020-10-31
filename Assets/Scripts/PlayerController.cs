@@ -71,7 +71,7 @@ public IEnumerator HandleInput()
     Vector3 StartPos = ThisTransform.position;
 
     //Dest position
-    Vector3 DestPos = ThisTransform.postition + ThisTransform.forward * Increment;
+    Vector3 DestPos = ThisTransform.position + ThisTransform.forward * Increment;
 
     //elapsed time
     float ElapsedTime = 0.0f;
