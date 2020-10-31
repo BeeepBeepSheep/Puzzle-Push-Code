@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
        {
        State = value;
 
-       AnimComp.SetInteger(iState,(int)State);
+       AnimComp.SetInteger("iState",(int)State);
        }
     }
 // time in seconds to move 
@@ -68,9 +68,6 @@ public IEnumerator HandleInput()
     public IEnumerator Move(float Increment = 0)
     {
     //start position
-    Vector3 StartPos = ThisTransform.position;
-
-    //Dest Position
     Vector3 StartPos = ThisTransform.position;
 
     //Dest position
