@@ -11,14 +11,14 @@ public class PlayerController : MonoBehaviour
    public MOVETYPE PlayerState
    {
        get{return State;}
-   
-   set 
-   {
+       
+       set 
+       {
        State = value;
 
        AnimComp.SetInteger(iState,(int)State);
-   }
-}
+       }
+    }
 // time in seconds to move 
 public float MoveTime = 1.0f;
 
@@ -65,8 +65,8 @@ public IEnumerator HandleInput()
         yield return null;
     }
 }
-public IEnumerator Move(float Increment = 0)
-{
+    public IEnumerator Move(float Increment = 0)
+    {
     //start position
     Vector3 StartPos = ThisTransform.position;
 
@@ -98,4 +98,7 @@ public IEnumerator Move(float Increment = 0)
     ThisTransform.position = DestPos;
 
     yield break;
+
+    }
+//--------------------------
 }
