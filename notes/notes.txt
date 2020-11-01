@@ -1,1 +1,1 @@
-finished vid 2 (need to fix compilor errors in movement script)
+finished vid 2 
