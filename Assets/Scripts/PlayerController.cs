@@ -45,10 +45,10 @@ public class PlayerController : MonoBehaviour
 	private Animator AnimComp = null;
 	
 	//Level Colliders
-	private Collider[] Colliders = null;
+	public Collider[] Colliders = null;
 	
 	//Player State
-	private MOVETYPE State = MOVETYPE.IDLE;
+	public MOVETYPE State = MOVETYPE.IDLE;
 
 	//Reference to last tested crate
 	private Transform LastBox = null;

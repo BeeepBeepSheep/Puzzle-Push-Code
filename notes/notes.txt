@@ -1,1 +1,1 @@
-finished vid 3 (fix box problem at 11:05
+finished vid 3 I need to make crate tag before i write player controller script and before i make box
