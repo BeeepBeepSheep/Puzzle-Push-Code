@@ -183,15 +183,19 @@ public class PlayerController : MonoBehaviour
     public SPACESTATE PointState(Vector3 Point)
     {
         //Cycle through colliders and test for collision
-        foreach (Collider C in Colliders)
+        foreach (Collider collider in Colliders)
         {
+            Debug.Log("This is my point" + Point);
+            Debug.Log("This is bounds min" + collider.bounds.min);
+            Debug.Log("This is bounds max" + collider.bounds.max);
             //Point intersects a collider - determine type
-            if (C.bounds.Contains(Point) && !C.gameObject.CompareTag("End"))
+            if (collider.bounds.Contains(Point) && !collider.gameObject.CompareTag("End"))
             {
-                if (C.gameObject.CompareTag("Crate"))
+                Debug.Log("Detecting collider");
+                if (collider.gameObject.CompareTag("Crate"))
                 {
                     //Get reference to crate
-                    LastBox = C.gameObject.transform;
+                    LastBox = collider.gameObject.transform;
 
                     return SPACESTATE.CRATE; //Point is in crate
                 }

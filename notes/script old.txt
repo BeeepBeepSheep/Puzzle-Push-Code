@@ -1,0 +1,109 @@
+//--------------------------------------
+using UnityEngine;
+using System.Collections;
+//--------------------------------------
+public class PlayerController : MonoBehaviour 
+{
+	//--------------------------------------
+	//enum for movement
+	public enum MOVETYPE {IDLE=0, WALK=1, BOXPUSH=2, CHEER=3};
+	//--------------------------------------
+	//Property for State
+	public MOVETYPE PlayerState
+	{
+		get{return State;}
+		
+		set
+		{
+			State = value;
+			
+			//Set animation state
+			AnimComp.SetInteger("iState",(int)State);
+		}
+	}
+	//--------------------------------------
+	//Time in seconds to move
+	public float MoveTime = 1.0f;
+
+	//Movement Speed (Units per Second)
+	public float MoveDistance = 2.0f;
+
+	//Cached Transform
+	private Transform ThisTransform = null;
+
+	//Player State
+	private MOVETYPE State = MOVETYPE.IDLE;
+
+	//Reference to animator
+	private Animator AnimComp = null;
+	//--------------------------------------
+	// Use this for initialization
+	void Start () 
+	{
+		//Get transform component
+		ThisTransform = GetComponent<Transform>();
+
+		//Get Anim Comp
+		AnimComp = GetComponent<Animator>();
+
+		//Start input handling loop for player controller
+		StartCoroutine(HandleInput());
+	}
+	//--------------------------------------
+	//Called each frame to handle input
+	public IEnumerator HandleInput()
+	{
+		//Loop forever, reading player input
+		while(true)
+		{
+			while(Mathf.CeilToInt(Input.GetAxis("Vertical")) > 0)
+			{
+				//Set walk
+				PlayerState = MOVETYPE.WALK;
+
+				//Move player 1 increment
+				yield return StartCoroutine(Move(MoveDistance));
+			}
+
+			//Set to idle
+			PlayerState = MOVETYPE.IDLE; //Set to idle state - default
+
+			yield return null;
+		}
+	}
+	//--------------------------------------
+	//Moves root transform one increment (2 units)
+	public IEnumerator Move(float Increment = 0)
+	{
+		//Start position
+		Vector3 StartPos = ThisTransform.position;
+		
+		//Dest Position
+		Vector3 DestPos = ThisTransform.position + ThisTransform.forward * Increment;
+		
+		//Elapsed Time
+		float ElapsedTime = 0.0f;
+		
+		while(ElapsedTime < MoveTime)
+		{
+			//Calculate interpolated angle
+			Vector3 FinalPos = Vector3.Lerp(StartPos, DestPos, ElapsedTime/MoveTime);
+			
+			//Update pos
+			ThisTransform.position = FinalPos;
+			
+		
+			//Wait until next frame
+			yield return null;
+			
+			//Update time
+			ElapsedTime += Time.deltaTime;
+		}
+		
+		//Complete move
+		ThisTransform.position = DestPos;
+		
+		yield break;
+	}
+	//--------------------------------------
+}
